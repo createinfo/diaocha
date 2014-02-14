@@ -11,7 +11,10 @@
 	pc.setSizePage(20);
 	List<Answersheet> aList=pc.getRecord();
  %> 
-
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
@@ -27,7 +30,7 @@
 <script type="text/javascript">
 function DelSheet(asid,sid){
 	if(confirm("确定要删除这个答卷吗？")==true)
-	window.location="../servlet/StatisManage.do?op=DelSheet&asid="+asid+"&sid="+sid;
+	window.location="<%=basePath%>statisManage/delSheet.do?op=DelSheet&asid="+asid+"&sid="+sid;
 }
 </script>
   </head>

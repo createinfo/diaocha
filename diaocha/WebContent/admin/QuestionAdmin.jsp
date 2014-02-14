@@ -3,8 +3,13 @@
 <%@ page import="com.ec.survey.dto.Question" %>
 <%@ page import="com.ec.survey.dao.QuestionDAO" %>
 <%@ page import="com.swufe.pager.*" %>
+
 <jsp:useBean id="pageConfig" class="com.swufe.pager.PageConfig"></jsp:useBean>
 <jsp:setProperty property="request" name="pageConfig" value="<%=request %>"/>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <%
 	QuestionDAO dao=DAOFactory.getQuestionDAO();
 	PageControl pc=new PageControl(dao,pageConfig,"QuestionAdmin.jsp?rand=1");
@@ -22,7 +27,7 @@
 	<script type="text/javascript">
 		function delQuestion(qid){
 			if(confirm("确定要删除这个题目吗？")==true)
-			window.location="../servlet/QuestionManage.do?op=DelQuestion&qid="+qid+"&sid=<%=request.getParameter("sid") %>";
+			window.location="<%=basePath%>question/delQuestion.do?&qid="+qid+"&sid=<%=request.getParameter("sid") %>";
 		}
 		function showType(typecode){ 
 			//typecode: dx--单选 ;fx--复选;
@@ -75,7 +80,7 @@ for(Question question:sList){
 </table>
 <div id=qEditor></div>
 <div id=dx style="display:none">
-<form name="form1" action="../servlet/QuestionManage.do?op=AddQuestion&type=1" method="post" onSubmit="return SubQuestion();">
+<form name="form1" action="<%=basePath%>question/addQuestion.do?op=AddQuestion&type=1" method="post" onSubmit="return SubQuestion();">
 	<input type="hidden" value=<%=request.getParameter("sid") %>  name="sid">
 	<input type="hidden" value="" name="qBody" id="qBody">
 	<input type="hidden" value="" name=qResult id="qResult">
@@ -94,7 +99,7 @@ for(Question question:sList){
 </form>
 </div>
 <div id=fx style="display: none">
-<form name="form1" action="../servlet/QuestionManage.do?op=AddQuestion&type=2" method="post" onSubmit="return SubQuestion();">
+<form name="form1" action="/question/addQuestion.do/?type=2" method="post" onSubmit="return SubQuestion();">
 	<input type="hidden" value=<%=request.getParameter("sid") %>  name="sid">
 	<input type="hidden" value="" name="qBody" id="qBody">
 	<input type="hidden" value="" name=qResult id="qResult">

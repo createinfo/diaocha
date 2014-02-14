@@ -85,9 +85,6 @@ A.blue:hover {
 	<TD valign="bottom" width="95">
 	  <a href="FriendLinkAdmin.jsp" target="right" title="链接管理"><img src="images/button9.gif" border="0"></a>
 	</TD>
-	<TD valign="bottom" width="95">
-	  <a href="AdminModify.jsp" target="right" title="修改密码"><img src="images/button7.gif" border="0"></a>
-	</TD>
 	<TD valign="bottom" width="*">
 	  <a href="admin_main.jsp" target="right" title="显示桌面"><img src="images/button8.gif" border="0"></a>
 	</TD>		

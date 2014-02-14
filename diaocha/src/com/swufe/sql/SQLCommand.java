@@ -1,7 +1,6 @@
 package com.swufe.sql;
 
 import java.sql.Connection;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,6 +8,8 @@ import java.sql.Statement;
 
 import javax.sql.RowSet;
 import javax.sql.rowset.CachedRowSet;
+
+import com.sun.rowset.CachedRowSetImpl;
 
 
 public class SQLCommand {

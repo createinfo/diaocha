@@ -3,6 +3,10 @@
 <%@ page import="com.ec.survey.dto.*" %>
 <%@ page import="com.swufe.util.*" %>
 <%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<%
 ConfigDAO cdao=DAOFactory.getConfigDAO();
 Config cfg=cdao.findConfig();
 SurveyDAO sdao=DAOFactory.getSurveyDAO();
@@ -149,7 +153,7 @@ if(!"".equals(survey.getSPassword())&&survey.getSPassword()!=null){
 %>
 <div id="surveyBox" >
 <div class="center" >
-<form id="form_survey" name="form1" action="survey/ShowSurvey.do?sid=<%=request.getParameter("sid") %>" method="post" onsubmit="return ChkForm()">
+<form id="form_survey" name="form1" action="<%=basePath%>showSurvey/showSurvey.do?sid=<%=request.getParameter("sid") %>" method="post" onsubmit="return ChkForm()">
 <div class="name"><b><%=survey.getSName() %></b><br/>
 <%
 QuestionDAO qdao=DAOFactory.getQuestionDAO();

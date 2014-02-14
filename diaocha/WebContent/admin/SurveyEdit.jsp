@@ -2,7 +2,10 @@
 <%@ page import="com.ec.survey.dao.*" %>
 <%@ page import="com.ec.survey.dto.Survey" %>
 <%@ page import="com.swufe.util.*" %>
-
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <%
 	String Survey_id=request.getParameter("sid");
 	SurveyDAO surveydao=DAOFactory.getSurveyDAO();
@@ -23,7 +26,7 @@ if (words!="null" && words!="")
 </head>
 <body>
 <div id="admin_surveyAdd_main">
-<form name="from1" action="../servlet/SurveyManage.do?op=EditSurvey" method="post" onSubmit="return CheckForm();">
+<form name="from1" action="<%=basePath%>surveyManage/editSurvey.do?op=EditSurvey" method="post" onSubmit="return CheckForm();">
 
 <table width="585" border="0" cellspacing="0" cellpadding="0" class="table">
   <tr>
@@ -61,29 +64,7 @@ if (words!="null" && words!="")
     <td><input name="Survey_isOpen" type="checkbox" value=true <%=survey.getSIsOpen()?"checked":"" %>></td>
     <td><span class="R">*</span> 不公开的问卷，只能通过编号进行访问</td>
   </tr>
-  <tr>
-    <td width="">为问卷添加主题图片</td>
-    <td width=""><input type="checkbox" name="Survey_isImg"  value="true" onClick="SwitchHidden('hidden_isImg');">
-	    <font color=red><%=survey.getSImg()==null||"".equals(survey.getSImg())?"":"已上传图片"+survey.getSImg() %></font>
-		<div id="hidden_isImg" style="display:none;"> 
-		
-		<input type=hidden name="imgfilepath" id="imgfilepath" value=<%=survey.getSImg() %>>
-		   <iframe name=myiframe src="upload.jsp" frameborder="0" width="400" height="50"></iframe>
-      </div>	</td>
-    <td width=""> &nbsp;&nbsp;主题图片的格式必须为.JPG或GIF</td>
-  </tr>
-  
-  <tr>
-    <td>设置问卷密码</td>
-    <td><input type="checkbox" name="Survey_isPassword" value="<%=survey.getSPassword() %>" onClick="SwitchHidden('hidden_isPassword');">
-	   <%=survey.getSPassword()==null||"".equals(survey.getSPassword())?"":"<font color=red>已设置密码,不改请留空</font>" %>
-	<div id="hidden_isPassword" style="display:none;"> 
-		
-           输入密码：<input type="password" name="Survey_Password1" id="Survey_Password1"><br/>
-           确认密码：<input type="password" name="Survey_Password2" id="Survey_Password2" onBlur="return CheckPassword('Survey_Password1','Survey_Password2','4');">
-      </div>	</td>
-    <td> &nbsp;&nbsp;选中此项，只有输入正确的密码才能完成问卷</td>
-  </tr>
+ 
   <tr>
     <td width="179">&nbsp;</td>
     <td>

@@ -56,7 +56,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <th width="374"><span class="R">*</span> 为必填项目 </th>
   </tr>
   <tr>
-    <td>用户名<%=basePath%></td>
+    <td>用户名</td>
     <td><input name="userName" id="username" type="text" size="50"></td>
     <td width="374"><span class="R">*</span> 用户名不能为空</td>
   </tr>

@@ -5,7 +5,10 @@
 <%@ page import="com.swufe.pager.*" %>
 <jsp:useBean id="pageConfig" class="com.swufe.pager.PageConfig"></jsp:useBean>
 <jsp:setProperty property="request" name="pageConfig" value="<%=request %>"/>
-
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <%
 	SurveyDAO dao=DAOFactory.getSurveyDAO();
 	PageControl pc=new PageControl(dao,pageConfig,"SurveyAdmin.jsp");
@@ -35,7 +38,7 @@
 <script type="text/javascript">
 function DelSurvey(sid){
 if(confirm("确定要删除这个问卷吗？")==true)
-window.location="../servlet/SurveyManage.do?op=DelSurvey&sid="+sid;
+window.location="<%=basePath%>surveyManage/delSurvey.do?op=DelSurvey&sid="+sid;
 }
 </script>
 </head>

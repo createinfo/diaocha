@@ -1,4 +1,8 @@
 <%@ page language="java" import="java.util.*,com.swufe.sql.*,com.ec.survey.dao.*" pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -9,7 +13,7 @@
 </head>
 <body>
 <div class=nav><a href=admin_main.jsp>桌面</a>»问卷添加<hr></div> 
-<form name="from1" action="../servlet/SurveyManage.do?op=AddSurvey" method="post" onSubmit="return CheckForm();">
+<form name="from1" action="<%=basePath%>surveyManage/addSurvey.do?op=AddSurvey" method="post" onSubmit="return CheckForm();">
 <table width="585" border="0" cellspacing="0" cellpadding="0" class="table">
   <tr>
     <th>问卷添加</th>

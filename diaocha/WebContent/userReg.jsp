@@ -2,6 +2,10 @@
 <%@ page import="com.ec.survey.dao.*" %>
 <%@ page import="com.ec.survey.dto.*" %>
 <%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<%
 	ConfigDAO cdao=DAOFactory.getConfigDAO();
 	Config cfg=cdao.findConfig();
 	SurveyDAO sdao=DAOFactory.getSurveyDAO();
@@ -64,7 +68,7 @@
 		<span class="red_bold">1.填写信息</span> > 2.注册成功
 	</div>
 	<div class="fill_message">
-		<form name="form" method="post"  action="servlet/UserManage.do?op=addUser" id="form">
+		<form name="form" method="post"  action="<%=basePath%>user/addUser.do?op=addUser" id="form">
 			<h2>
 				以下均为必填项	<input name="reg" type="hidden" id="reg" class="text_input" value="1"/>
 			</h2>
